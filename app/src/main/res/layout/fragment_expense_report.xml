@@ -11,7 +11,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Expense Report (Last 7 Days)"
-        android:textAppearance="?attr/textAppearanceHeadlineMedium"
+        android:textAppearance="?attr/textAppearanceHeadlineSmall"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -39,7 +39,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Daily Totals"
+                android:text="Daily-wise"
                 android:textAppearance="?attr/textAppearanceTitleMedium"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -78,7 +78,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Category-wise Totals"
+                android:text="Category-wise"
                 android:textAppearance="?attr/textAppearanceTitleMedium"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -120,15 +120,12 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/rvCategoryTotals" />
 
-            <!-- Chart Placeholder -->
-            <FrameLayout
-                android:id="@+id/chartContainer"
+            <!-- Chart -->
+            <com.github.mikephil.charting.charts.PieChart
+                android:id="@+id/pieChart"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_marginTop="8dp"
-                android:background="@color/colorPrimary"
-                android:contentDescription="Chart Placeholder"
-                app:layout_constraintTop_toBottomOf="@id/tvChartLabel" />
+                android:layout_height="250dp"
+                app:layout_constraintTop_toBottomOf="@id/tvChartLabel"/>
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tvNoChart"
@@ -150,8 +147,8 @@
                 android:layout_marginTop="24dp"
                 android:gravity="center"
                 android:orientation="horizontal"
-                android:weightSum="3"
-                app:layout_constraintTop_toBottomOf="@id/chartContainer">
+                android:weightSum="2"
+                app:layout_constraintTop_toBottomOf="@id/pieChart">
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnExportPdf"
@@ -159,22 +156,19 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
                     android:layout_weight="1"
-                    android:text="Export PDF" />
+                    app:icon="@drawable/ic_pdf_24"
+                    app:iconGravity="textStart"
+                    android:text="View PDF" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnExportCsv"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
+                    app:icon="@drawable/ic_share_24"
+                    app:iconGravity="textStart"
                     android:layout_weight="1"
                     android:text="Export CSV" />
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnShare"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Share" />
 
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
