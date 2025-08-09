@@ -10,6 +10,7 @@ class SharedPrefHelper(
     private val USER_NAME = "user_name"
     private val USER_EMAIL = "user_email"
     private val FCM_TOKEN = "fcm_token"
+    private val MOCK_DATA_INSERTED = "mock_data_inserted"
 
     fun setUserName(name: String?) {
         sharedPreferences.edit().putString(USER_NAME, name).apply()
@@ -38,4 +39,13 @@ class SharedPrefHelper(
     fun clearPreferences() {
         sharedPreferences.edit().clear().apply()
     }
+
+    fun hasInsertedMockData(): Boolean {
+        return sharedPreferences.getBoolean(MOCK_DATA_INSERTED, false)
+    }
+
+    fun setInsertedMockData() {
+        sharedPreferences.edit().putBoolean(MOCK_DATA_INSERTED, true).apply()
+    }
+
 }

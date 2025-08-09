@@ -8,16 +8,18 @@
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvAmountAnimation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginTop="8dp"
         android:textColor="@android:color/holo_green_dark"
         android:textSize="20sp"
+        android:gravity="center"
         android:textStyle="bold"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="+2000"/>
 
     <!-- Total Spent Today -->
     <com.google.android.material.card.MaterialCardView

@@ -1,0 +1,183 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <!-- Screen Title fixed on top -->
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvReportTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Expense Report (Last 7 Days)"
+        android:textAppearance="?attr/textAppearanceHeadlineMedium"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- NestedScrollView wraps all scrollable content -->
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvReportTitle">
+
+        <!-- Use LinearLayout vertical as child -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <!-- Daily Totals Label -->
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvDailyTotalsLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Daily Totals"
+                android:textAppearance="?attr/textAppearanceTitleMedium"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- Daily Totals RecyclerView (carousel) -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvDailyTotals"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:clipToPadding="false"
+                android:nestedScrollingEnabled="false"
+                android:overScrollMode="never"
+                android:paddingStart="4dp"
+                android:clipChildren="false"
+                android:paddingEnd="4dp"
+                app:layoutManager="com.google.android.material.carousel.CarouselLayoutManager"
+                app:layout_constraintTop_toBottomOf="@id/tvDailyTotalsLabel"
+                tools:listitem="@layout/item_daily_total" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvNoDailyTotals"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_marginTop="16dp"
+                android:visibility="gone"
+                android:gravity="center"
+                android:text="No details to show..."
+                android:textAppearance="?attr/textAppearanceTitleSmall"
+                app:layout_constraintTop_toBottomOf="@id/tvDailyTotalsLabel" />
+
+            <!-- Category Totals Label -->
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvCategoryTotalsLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Category-wise Totals"
+                android:textAppearance="?attr/textAppearanceTitleMedium"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rvDailyTotals" />
+
+            <!-- Category Totals RecyclerView (carousel) -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvCategoryTotals"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:nestedScrollingEnabled="false"
+                android:clipChildren="false"
+                app:layoutManager="com.google.android.material.carousel.CarouselLayoutManager"
+                app:layout_constraintTop_toBottomOf="@id/tvCategoryTotalsLabel"
+                tools:listitem="@layout/item_daily_total" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvNoCategoryTotals"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_marginTop="16dp"
+                android:gravity="center"
+                android:visibility="gone"
+                android:text="No details to show..."
+                android:textAppearance="?attr/textAppearanceTitleSmall"
+                app:layout_constraintTop_toBottomOf="@id/tvCategoryTotalsLabel" />
+
+            <!-- Chart Label -->
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvChartLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="Spending Chart"
+                android:textAppearance="?attr/textAppearanceTitleMedium"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rvCategoryTotals" />
+
+            <!-- Chart Placeholder -->
+            <FrameLayout
+                android:id="@+id/chartContainer"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/colorPrimary"
+                android:contentDescription="Chart Placeholder"
+                app:layout_constraintTop_toBottomOf="@id/tvChartLabel" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/tvNoChart"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:visibility="gone"
+                android:text="No details to show..."
+                android:textAppearance="?attr/textAppearanceTitleSmall"
+                app:layout_constraintTop_toBottomOf="@id/tvChartLabel" />
+
+
+            <!-- Export Buttons container -->
+            <LinearLayout
+                android:id="@+id/exportButtonContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:weightSum="3"
+                app:layout_constraintTop_toBottomOf="@id/chartContainer">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnExportPdf"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_weight="1"
+                    android:text="Export PDF" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnExportCsv"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_weight="1"
+                    android:text="Export CSV" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnShare"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Share" />
+
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

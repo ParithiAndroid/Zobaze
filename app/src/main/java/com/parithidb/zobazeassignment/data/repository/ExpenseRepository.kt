@@ -17,6 +17,10 @@ class ExpenseRepository @Inject constructor(
         expenseDao.insertExpense(expenseEntity)
     }
 
+    suspend fun insertExpenses(expenses: List<ExpenseEntity>) {
+        expenseDao.insertExpenses(expenses)
+    }
+
     fun getTotalSpentToday(): LiveData<Double?> {
         return expenseDao.getTotalSpentToday()
     }
@@ -35,6 +39,10 @@ class ExpenseRepository @Inject constructor(
 
     suspend fun deleteExpenseById(id: Int) {
         expenseDao.deleteExpenseById(id)
+    }
+
+    fun getExpensesFromLastWeek(): LiveData<List<ExpenseEntity>> {
+        return expenseDao.getExpensesFromLastWeek()
     }
 
 }

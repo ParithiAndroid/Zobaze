@@ -32,7 +32,7 @@ class ExpenseEntryFragment : Fragment() {
     private lateinit var binding: FragmentExpenseEntryBinding
     private val viewModel: ExpenseEntryViewModel by viewModels()
     private var currentReceiptUri: String? = null
-    private val categories = listOf("Staff", "Travel", "Food", "Utility")
+    private val categories = listOf("Food", "Transport", "Shopping", "Bills", "Entertainment")
     private var expenseId: Int? = null
 
 

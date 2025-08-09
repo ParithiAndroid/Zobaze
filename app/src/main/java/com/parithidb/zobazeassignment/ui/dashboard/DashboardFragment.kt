@@ -29,6 +29,7 @@ class DashboardFragment: Fragment() {
         // Setup ViewPager + Tabs
         val adapter = DashboardViewPagerAdapter(this)
         binding.viewPager.adapter = adapter
+        binding.viewPager.isUserInputEnabled = false
 
         val tabTitles = listOf("Report", "Expenses")
 

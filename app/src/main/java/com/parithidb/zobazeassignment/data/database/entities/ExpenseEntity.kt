@@ -2,9 +2,10 @@ package com.parithidb.zobazeassignment.data.database.entities
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.Index
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "EXPENSE")
+@Entity(tableName = "EXPENSE", indices = [Index(value = ["title", "amount", "timeStamp"], unique = true)])
 class ExpenseEntity(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo("expenseId")

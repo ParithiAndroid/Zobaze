@@ -14,6 +14,9 @@ interface ExpenseDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertExpense(expenseEntity: ExpenseEntity)
 
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insertExpenses(expenses: List<ExpenseEntity>)
+
     @Query("SELECT SUM(amount) FROM EXPENSE WHERE date(timestamp / 1000, 'unixepoch', 'localtime') = date('now', 'localtime')")
     fun getTotalSpentToday(): LiveData<Double?>
 
@@ -29,5 +32,8 @@ interface ExpenseDao {
 
     @Query("DELETE FROM expense WHERE expenseId = :id")
     suspend fun deleteExpenseById(id: Int)
+
+    @Query("SELECT * FROM EXPENSE WHERE timeStamp >= :fromTimestamp ORDER BY timeStamp DESC")
+    fun getExpensesFromLastWeek(fromTimestamp: Long = System.currentTimeMillis() - 7 * 24 * 60 * 60 * 1000L): LiveData<List<ExpenseEntity>>
 
 }
