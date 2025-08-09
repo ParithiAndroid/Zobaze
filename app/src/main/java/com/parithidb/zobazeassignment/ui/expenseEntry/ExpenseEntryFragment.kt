@@ -1,5 +1,6 @@
 package com.parithidb.zobazeassignment.ui.expenseEntry
 
+import android.app.DatePickerDialog
 import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Bitmap
@@ -25,6 +26,10 @@ import com.parithidb.zobazeassignment.databinding.FragmentExpenseEntryBinding
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.File
 import java.io.FileOutputStream
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Date
+import java.util.Locale
 
 @AndroidEntryPoint
 class ExpenseEntryFragment : Fragment() {
@@ -34,7 +39,7 @@ class ExpenseEntryFragment : Fragment() {
     private var currentReceiptUri: String? = null
     private val categories = listOf("Food", "Transport", "Shopping", "Bills", "Entertainment")
     private var expenseId: Int? = null
-
+    private var selectedDateMillis: Long = System.currentTimeMillis()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -52,6 +57,12 @@ class ExpenseEntryFragment : Fragment() {
             viewLifecycleOwner
         ) {
             findNavController().navigateUp()
+        }
+
+        binding.actvDate.setText(formatDate(selectedDateMillis))
+
+        binding.actvDate.setOnClickListener {
+            openDatePicker()
         }
 
         handleAddOrEdit()
@@ -97,7 +108,8 @@ class ExpenseEntryFragment : Fragment() {
                 amount = binding.etAmount.text.toString().toDouble(),
                 category = binding.actvCategory.text.toString(),
                 notes = binding.etNotes.text.toString(),
-                receiptUri = currentReceiptUri
+                receiptUri = currentReceiptUri,
+                timestamp = selectedDateMillis
             )
             viewModel.updateExpenseById(updatedExpense)
             Toast.makeText(requireContext(), "Updated", Toast.LENGTH_SHORT).show()
@@ -128,6 +140,8 @@ class ExpenseEntryFragment : Fragment() {
         if (expenseId != null && expenseId != -1) {
             viewModel.getExpenseById().observe(viewLifecycleOwner) { expense ->
                 expense?.let {
+                    selectedDateMillis = it.timestamp
+                    binding.actvDate.setText(formatDate(selectedDateMillis))
                     binding.etTitle.setText(it.title)
                     binding.etAmount.setText(it.amount.toString())
                     binding.actvCategory.setText(it.category, false)
@@ -189,7 +203,8 @@ class ExpenseEntryFragment : Fragment() {
             amount = amount,
             category = chosenCategory,
             notes = notes.ifBlank { null },
-            receiptUri = currentReceiptUri
+            receiptUri = currentReceiptUri,
+            timestamp = selectedDateMillis
         )
 
         viewModel.insertExpense(expense)
@@ -259,6 +274,38 @@ class ExpenseEntryFragment : Fragment() {
             "${requireContext().packageName}.provider",
             file
         )
+    }
+
+    private fun openDatePicker() {
+        val calendar = Calendar.getInstance().apply {
+            timeInMillis = selectedDateMillis
+        }
+        val year = calendar.get(Calendar.YEAR)
+        val month = calendar.get(Calendar.MONTH)
+        val day = calendar.get(Calendar.DAY_OF_MONTH)
+
+        val datePicker = DatePickerDialog(requireContext(), { _, y, m, d ->
+            val newCal = Calendar.getInstance()
+            newCal.set(y, m, d)
+
+            // Keep current time (hours, minutes, seconds)
+            val currentTimeCal = Calendar.getInstance()
+            newCal.set(Calendar.HOUR_OF_DAY, currentTimeCal.get(Calendar.HOUR_OF_DAY))
+            newCal.set(Calendar.MINUTE, currentTimeCal.get(Calendar.MINUTE))
+            newCal.set(Calendar.SECOND, currentTimeCal.get(Calendar.SECOND))
+            newCal.set(Calendar.MILLISECOND, currentTimeCal.get(Calendar.MILLISECOND))
+
+            selectedDateMillis = newCal.timeInMillis
+            binding.actvDate.setText(formatDate(selectedDateMillis))
+
+        }, year, month, day)
+
+        datePicker.show()
+    }
+
+    private fun formatDate(millis: Long): String {
+        val sdf = SimpleDateFormat("dd MMM yyyy", Locale.getDefault())
+        return sdf.format(Date(millis))
     }
 
 

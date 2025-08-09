@@ -51,7 +51,7 @@ class ExpenseListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.etDate.setOnClickListener {
+        binding.actvDate.setOnClickListener {
             val picker = MaterialDatePicker.Builder.datePicker()
                 .setTitleText("Select Date")
                 .setSelection(
@@ -64,7 +64,7 @@ class ExpenseListFragment : Fragment() {
                     .atZone(ZoneId.systemDefault())
                     .toLocalDate()
 
-                binding.etDate.setText(selectedDate.format(dateFormatter))
+                binding.actvDate.setText(selectedDate.format(dateFormatter))
 
                 loadExpensesForDate(selectedDate)
             }
@@ -76,7 +76,7 @@ class ExpenseListFragment : Fragment() {
         binding.rvExpenses.adapter = adapter
 
         // Init with today's date
-        binding.etDate.setText(selectedDate.format(dateFormatter))
+        binding.actvDate.setText(selectedDate.format(dateFormatter))
         loadExpensesForDate(selectedDate)
 
         binding.toggleGroupBy.addOnButtonCheckedListener { group, checkedId, isChecked ->
@@ -125,6 +125,5 @@ class ExpenseListFragment : Fragment() {
             adapter.submitList(sorted)
         }
     }
-
 
 }

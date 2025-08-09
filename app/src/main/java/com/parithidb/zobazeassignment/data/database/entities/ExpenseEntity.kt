@@ -21,7 +21,7 @@ class ExpenseEntity(
     @ColumnInfo("receiptUrl")
     val receiptUri: String?, // uri.toString() or null
     @ColumnInfo("timeStamp")
-    val timestamp: Long = System.currentTimeMillis()
+    val timestamp: Long
 ) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
