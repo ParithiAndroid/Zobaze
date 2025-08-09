@@ -1,5 +1,7 @@
 package com.parithidb.zobazeassignment.ui.expenseEntry
 
+import android.content.DialogInterface
+import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
@@ -11,6 +13,7 @@ import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
 import androidx.core.content.FileProvider
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
@@ -102,9 +105,18 @@ class ExpenseEntryFragment : Fragment() {
         }
 
         binding.btnDelete.setOnClickListener {
-            viewModel.deleteExpenseById(expenseId!!)
-            Toast.makeText(requireContext(), "Deleted", Toast.LENGTH_SHORT).show()
-            findNavController().navigateUp()
+            AlertDialog.Builder(requireContext())
+                .setTitle("Delete")
+                .setMessage("Are you sure you want to delete this expense?")
+                .setPositiveButton("Yes", DialogInterface.OnClickListener { dialogInterface, i ->
+                    viewModel.deleteExpenseById(expenseId!!)
+                    Toast.makeText(requireContext(), "Deleted", Toast.LENGTH_SHORT).show()
+                    findNavController().navigateUp()
+                })
+                .setNegativeButton(
+                    "Cancel",
+                    DialogInterface.OnClickListener { dialogInterface, i -> dialogInterface.dismiss() })
+                .show()
         }
 
     }
@@ -219,6 +231,10 @@ class ExpenseEntryFragment : Fragment() {
     ) { uri ->
         uri?.let {
             currentReceiptUri = it.toString()
+            requireContext().contentResolver.takePersistableUriPermission(
+                it,
+                Intent.FLAG_GRANT_READ_URI_PERMISSION
+            )
             binding.ivReceipt.setImageURI(it)
         }
     }
@@ -244,7 +260,6 @@ class ExpenseEntryFragment : Fragment() {
             file
         )
     }
-
 
 
 }

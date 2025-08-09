@@ -70,6 +70,5 @@ dependencies {
     implementation(libs.androidx.hilt.navigation.fragment)
 
     implementation(libs.androidx.core.splashscreen)
-    implementation(platform("com.google.firebase:firebase-bom:34.1.0"))
 
 }
