@@ -1,0 +1,22 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.ZobazeAssignment" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your dark theme here. -->
+        <item name="colorPrimary">@color/dark_colorPrimary</item>
+        <item name="colorOnPrimary">@color/dark_colorOnPrimary</item>
+        <item name="colorSecondary">@color/dark_colorSecondary</item>
+        <item name="colorOnSecondary">@color/dark_colorOnSecondary</item>
+        <item name="android:colorBackground">@color/dark_colorBackground</item>
+        <item name="colorOnBackground">@color/dark_colorOnBackground</item>
+        <item name="colorSurface">@color/dark_colorSurface</item>
+        <item name="colorOnSurface">@color/dark_colorOnSurface</item>
+        <item name="android:statusBarColor">@color/dark_statusBarColor</item>
+    </style>
+    <style name="Theme.ZobazeAssignment" parent="Base.Theme.ZobazeAssignment" />
+
+    <style name="Theme.ZobazeAssignment.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/dark_colorPrimary</item>
+        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher</item>
+        <item name="postSplashScreenTheme">@style/Theme.ZobazeAssignment</item>
+    </style>
+</resources>

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "794470017945",
+    "project_id": "zobaze-83415",
+    "storage_bucket": "zobaze-83415.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:794470017945:android:037e5a9fd1f81ece998108",
+        "android_client_info": {
+          "package_name": "com.parithidb.zobazeassignment"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCUItCGKQwCVoc5HD5AC8X8ej8ipVQmyjA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

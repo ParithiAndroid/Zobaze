@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/expense_nav_graph"
+    app:startDestination="@id/dashboardFragment">
+
+    <fragment
+        android:id="@+id/dashboardFragment"
+        android:name="com.parithidb.zobazeassignment.ui.dashboard.DashboardFragment"
+        android:label="Dashboard"
+        tools:layout="@layout/fragment_dashboard">
+        <action
+            android:id="@+id/action_dashboardFragment_to_expenseEntryFragment"
+            app:destination="@id/expenseEntryFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/expenseEntryFragment"
+        android:name="com.parithidb.zobazeassignment.ui.expenseEntry.ExpenseEntryFragment"
+        android:label="Enter Expense"
+        tools:layout="@layout/fragment_expense_entry">
+
+        <argument
+            android:name="expenseId"
+            app:argType="integer"
+            android:defaultValue="-1"/>
+    </fragment>
+
+</navigation>

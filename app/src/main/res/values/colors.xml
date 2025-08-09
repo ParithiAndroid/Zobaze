@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="colorPrimary">#00695C</color>
+    <color name="colorOnPrimary">#FFFFFF</color>
+    <color name="colorSecondary">#009688</color>
+    <color name="colorOnSecondary">#FFFFFF</color>
+
+    <!-- Backgrounds -->
+    <color name="colorBackground">#FAFAFA</color>
+    <color name="colorOnBackground">#121212</color>
+    <color name="colorSurface">#FFFFFF</color>
+    <color name="colorOnSurface">#1F1F1F</color>
+
+    <!-- Status bar -->
+    <color name="statusBarColor">#FFFFFF</color>
+
+    <color name="dark_colorPrimary">#80CBC4</color>
+    <color name="dark_colorOnPrimary">#00332C</color>
+    <color name="dark_colorSecondary">#4DB6AC</color>
+    <color name="dark_colorOnSecondary">#00201A</color>
+
+    <color name="dark_colorBackground">#121212</color>
+    <color name="dark_colorOnBackground">#FFFFFF</color>
+    <color name="dark_colorSurface">#1E1E1E</color>
+    <color name="dark_colorOnSurface">#FFFFFF</color>
+
+    <color name="dark_statusBarColor">#000000</color>
+
+</resources>
