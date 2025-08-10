@@ -41,7 +41,13 @@ Key prompts used during development:
 [**Download APK**](https://drive.google.com/file/d/17iPH3u2IwCKQht-mnPqwhVSJH_prt3iQ/view?usp=sharing)
 
 ## Screenshots
-
+<p align="center">
+  <img src="screenshots/1.jpg" width="200" />
+  <img src="screenshots/2.jpg" width="200" />
+  <img src="screenshots/3.jpg" width="200" />
+  <img src="screenshots/4.jpg" width="200" />
+  <img src="screenshots/5.jpg" width="200" />
+</p>
 
 ## Resume
 [**View Resume**](/PARITHI_DB_Resume.pdf)
