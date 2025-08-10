@@ -38,7 +38,7 @@ Key prompts used during development:
 - [x] Clean, modular code with separate layers for UI, Data, and Domain
 
 ## APK Download
-[**Download APK**](https://drive.google.com/file/d/17iPH3u2IwCKQht-mnPqwhVSJH_prt3iQ/view?usp=sharing)
+[**Download APK**](https://drive.google.com/file/d/1pJLMbV-8EKUPISAQYBrDDE_qIrjYeFEt/view?usp=sharing)
 
 ## Screenshots
 <p align="center">
