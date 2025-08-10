@@ -44,7 +44,7 @@ Key prompts used during development:
 
 
 ## Resume
-[**View Resume**](/resume.pdf)
+[**View Resume**](/PARITHI_DB_Resume.pdf)
 
 ## Source Code
 The repository includes:
